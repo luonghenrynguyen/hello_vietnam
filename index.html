@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>INIADFES2020 - HELLO VIETNAM - AR</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      font-family: sans-serif;
+      font-size: 14px;
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      transition: opacity 300ms;
+    }
+
+    a:hover {
+      text-decoration: none;
+      opacity: .5;
+    }
+
+    .list {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 100px;
+      margin-left: -15px;
+    }
+
+    .item {
+      color: #222;
+      display: block;
+      font-size: 14px;
+      width: 25%;
+      padding: 0 0 15px 15px;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .image {
+      display: block;
+      width: 100%;
+    }
+
+    .nowrap {
+      white-space: nowrap;
+    }
+
+    .file-box {
+      background: #f5f5f5;
+      height: 100%;
+    }
+
+    .file-box .icon {
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      padding: 3rem 0;
+    }
+
+    .file-box .name {
+      background: #f5f5f5;
+      padding: 15px;
+    }
+
+    .movie-wrap {
+      position: relative;
+      padding-bottom: 56.25%;
+      /*アスペクト比 16:9の場合の縦幅*/
+      height: 0;
+      overflow: hidden;
+    }
+
+    .movie-wrap iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .device-os {
+      font-size: 3rem;
+      font-weight: bold;
+      margin: 0 auto 35px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 1rem;
+      margin-bottom: 30px;
+      position: relative;
+      text-align: center;
+    }
+
+    .section-title:before {
+      content: '';
+      background: #000;
+      display: block;
+      margin-top: -0.5px;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      z-index: -1;
+    }
+
+    .section-title a {
+      background: #fff;
+      border: 1px solid #000;
+      color: #000;
+      display: inline-block;
+      margin: 0 auto;
+      padding: 10px;
+      position: relative;
+      opacity: 1 !important;
+      width: 300px;
+    }
+
+    .section-title a:after {
+      content: '>';
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      transition: transform 300ms;
+    }
+
+    .section-title.open a:after {
+      transform: translateY(-50%) rotateZ(90deg);
+    }
+
+    .section .container {
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+
+    .howto {
+      margin: 0 auto 3rem;
+      max-width: 768px;
+    }
+
+    .howto-video {
+      position: relative;
+    }
+
+    .howto-video video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 88.5%;
+      z-index: -1;
+      transform: translate(-50%, -50%);
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+    }
+
+    .step {
+      margin-bottom: 0;
+    }
+
+    .step+.step {
+      margin-top: 2rem;
+    }
+
+    .step dt {
+      background: #2f2f2f;
+      border-radius: 30px;
+      color: #fff;
+      display: inline-block;
+      margin-bottom: 1rem;
+      padding: 5px 30px;
+      text-align: center;
+    }
+
+    .step dd {
+      margin-left: 1rem;
+      margin-bottom: 0;
+    }
+
+    .howto-item {
+      border-bottom: 1px solid #dee2e6;
+      margin-bottom: 3rem;
+    }
+
+    .howto-item-left,
+    .howto-item-right {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
+    .howto-item-left {
+      display: flex;
+      margin-bottom: 1rem;
+    }
+
+    .howto-item-left h4 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .howto-item-left span {
+      color: #0070c9;
+      font-size: 4rem;
+      font-family: "Helvetica Neue", sans-serif;
+      line-height: .8;
+      padding-right: 1rem;
+      text-align: center;
+    }
+
+    @media (max-width: 767.98px) {
+      .list {
+        margin-bottom: 50px;
+      }
+
+      .item {
+        width: 50%;
+      }
+
+      .section .container {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .device-os {
+        margin-top: 20px;
+      }
+    }
+
+    /* The sidebar menu */
+    .sidebar {
+      height: 100%;
+      /* 100% Full-height */
+      width: 0;
+      /* 0 width - change this with JavaScript */
+      position: fixed;
+      /* Stay in place */
+      z-index: 1;
+      /* Stay on top */
+      top: 0;
+      left: 0;
+      background-color: #111;
+      /* Black*/
+      overflow-x: hidden;
+      /* Disable horizontal scroll */
+      padding-top: 60px;
+      /* Place content 60px from the top */
+      transition: 0.5s;
+      /* 0.5 second transition effect to slide in the sidebar */
+    }
+
+    /* The sidebar links */
+    .sidebar a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #818181;
+      display: block;
+      transition: 0.3s;
+    }
+
+    /* When you mouse over the navigation links, change their color */
+    .sidebar a:hover {
+      color: #f1f1f1;
+    }
+
+    /* Position and style the close button (top right corner) */
+    .sidebar .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+
+    /* The button used to open the sidebar */
+    .openbtn {
+      font-size: 20px;
+      cursor: pointer;
+      background-color: #111;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+    }
+
+    .openbtn:hover {
+      background-color: #444;
+    }
+
+    /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+    #main {
+      transition: margin-left .5s;
+      /* If you want a transition effect */
+      padding: 20px;
+    }
+
+    /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+    @media screen and (max-height: 450px) {
+      .sidebar {
+        padding-top: 15px;
+      }
+
+      .sidebar a {
+        font-size: 18px;
+      }
+    }
+
+    .imgButton {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-light" style="background-color: #F0F8FF;">
+    <a class="navbar-brand" href="index.html">
+      <img src="images/logo.png" width="30" height="30">
+      Hello VietNam - WebAR</a>
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link active" href="index.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="contact.html">Team</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="disclaimer.html">Disclainmer</a>
+      </li>
+      <!--<li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+        </li>-->
+    </ul>
+  </nav>
+
+
+  <!-- conntent area start -->
+  <div class="container">
+    <div class="list my-5">
+      <a href="objects/nonla.glb" ios-src="objects/nonla.usdz" alt="ノンラ―" no-icon class="item">
+        <img src="images/nonla.png" alt="Nonla" class="image">
+        <div class="name mt-2">ノンラ―<br></div>
+      </a>
+
+      <a href="objects/aodai.glb" ios-src="objects/aodai.usdz" alt="アオダイ" no-icon class="item">
+        <img src="images/aodai.png" alt="Aodai" class="image">
+        <div class="name mt-2">アオダイ<br></div>
+      </a>
+
+      <a href="objects/chouchin.glb" ios-src="objects/chouchin.usdz" alt="提灯"" no-icon class=" item">
+        <img src="images/chouchin.png" alt="Chouchin" class="image">
+        <div class="name mt-2">提灯<br></div>
+      </a>
+
+    </div>
+  </div>
+  <!-- conntent area end -->
+
+  
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="webar.js"></script>
+
+
+  <div class="container" style="padding-top: 0px;">
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+      <h1>動作環境</h1>
+      <hr>
+      <ul>
+          <li>ブラウザ(iOS 12.1以降 / iPadOS)</li>
+          <li>Google Play 開発者サービス(AR) (Android 7.0以降（一部のモデルでは、新しいバージョンが必要)</li>
+
+      </ul>
+      <div class="row">
+        <div class="col-12 col-md">
+          <img class="mb-2" src="images/logo.png" width="24" height="24">
+          <small class="d-block mb-3 text-muted">©2020 LUONG NGUYEN VAN</small>
+        </div>
+
+        <div class="col-6 col-md">
+          <h5>About</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="contact.html">Team</a></li>
+            <li><a class="text-muted" href="disclaimer.html">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+
+</html>
